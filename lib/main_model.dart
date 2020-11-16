@@ -34,4 +34,26 @@ class MainModel extends ChangeNotifier {
       'createdAt': Timestamp.now(),
     });
   }
+
+  void reload() {
+    notifyListeners();
+  }
+
+  Future deleteCheckedItems() async {
+    final checkedItems = todoList.where((todo) => todo.isDone).toList();
+    final references =
+        checkedItems.map((todo) => todo.documentReference).toList();
+
+    final batch = FirebaseFirestore.instance.batch();
+
+    references.forEach((reference) {
+      batch.delete(reference);
+    });
+    return batch.commit();
+  }
+
+  bool checkShouldActiveCompleteButton() {
+    final checkedItems = todoList.where((todo) => todo.isDone).toList();
+    return checkedItems.length > 0;
+  }
 }
