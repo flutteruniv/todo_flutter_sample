@@ -4,9 +4,11 @@ class Todo {
   Todo(DocumentSnapshot doc) {
     this.documentReference = doc.reference;
 
-    this.title = doc.data()['title'];
+    final data = doc.data() as Map<String, Object>;
 
-    final Timestamp timestamp = doc.data()['createdAt'];
+    this.title = data['title'];
+
+    final Timestamp timestamp = data['createdAt'];
     this.createdAt = timestamp.toDate();
   }
 
