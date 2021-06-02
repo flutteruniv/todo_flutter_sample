@@ -31,7 +31,7 @@ class MainPage extends StatelessWidget {
           actions: [
             Consumer<MainModel>(builder: (context, model, child) {
               final isActive = model.checkShouldActiveCompleteButton();
-              return FlatButton(
+              return TextButton(
                 onPressed: isActive
                     ? () async {
                         await model.deleteCheckedItems();

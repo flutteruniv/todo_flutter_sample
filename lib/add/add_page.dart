@@ -31,7 +31,7 @@ class AddPage extends StatelessWidget {
                 SizedBox(
                   height: 16,
                 ),
-                RaisedButton(
+                ElevatedButton(
                   child: Text('追加する'),
                   onPressed: () async {
                     // firestoreに値を追加する
